@@ -16,7 +16,7 @@ from .utils import (
     verifyLoggerGroup,
 )
 
-LOGS = logging.getLogger("CatUserbot")
+LOGS = logging.getLogger("RICKTHON")
 
 print(userbot.__copyright__)
 print(f"Licensed under the terms of the {userbot.__license__}")
@@ -24,9 +24,9 @@ print(f"Licensed under the terms of the {userbot.__license__}")
 cmdhr = Config.COMMAND_HAND_LER
 
 try:
-    LOGS.info("Starting Userbot")
+    LOGS.info("جار بدء سورس ريك ثون")
     catub.loop.run_until_complete(setup_bot())
-    LOGS.info("TG Bot Startup Completed")
+    LOGS.info("تم تشغيل البوت")
 except Exception as e:
     LOGS.error(f"{e}")
     sys.exit()
@@ -37,10 +37,10 @@ async def startup_process():
     await load_plugins("plugins")
     await load_plugins("assistant")
     print("============================================================")
-    print("Yay your userbot is officially working.!!!")
+    print("تم تنصيب سورس ريك ثون بنجاح.!!!")
     print(
-        f"Congratulation, now type {cmdhr}alive to see message if catub is live\
-        \nIf you need assistance, head to https://t.me/catuserbot_support"
+        f"اهلا {cmdhr} الاوامر لرؤية الاوامر\
+        \nاذا تحتاج الى مساعدة  https://t.me/rickthon_group"
     )
     print("============================================================")
     await verifyLoggerGroup()
