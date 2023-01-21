@@ -26,7 +26,7 @@ plugin_category = "utils"
 
 
 @catub.cat_cmd(
-    pattern="alive$",
+    pattern="فحص$",
     command=("alive", plugin_category),
     info={
         "header": "To check bot's alive status",
@@ -46,12 +46,12 @@ async def amireallyalive(event):
         ANIME = f"**“{data['quote']}” - {data['character']} ({data['anime']})**"
     uptime = await get_readable_time((time.time() - StartTime))
     start = datetime.now()
-    catevent = await edit_or_reply(event, "`Checking...`")
+    catevent = await edit_or_reply(event, "`تدقيق...`")
     end = datetime.now()
     ms = (end - start).microseconds / 1000
     _, check_sgnirts = check_data_base_heal_th()
     EMOJI = gvarstatus("ALIVE_EMOJI") or "  ✥ "
-    ALIVE_TEXT = gvarstatus("ALIVE_TEXT") or "**✮ MY BOT IS RUNNING SUCCESSFULLY ✮**"
+    ALIVE_TEXT = gvarstatus("ALIVE_TEXT") or "**✮ بوت ريك ثون يعمل بنجاح ✓ ✮**"
     CAT_IMG = gvarstatus("ALIVE_PIC")
     caption = cat_caption.format(
         ALIVE_TEXT=ALIVE_TEXT,
@@ -86,26 +86,26 @@ async def amireallyalive(event):
 
 
 temp = """{ALIVE_TEXT}
-**{EMOJI} Database :** `{dbhealth}`
-**{EMOJI} Telethon Version :** `{telever}`
-**{EMOJI} Catuserbot Version :** `{catver}`
-**{EMOJI} Python Version :** `{pyver}`
-**{EMOJI} Uptime :** `{uptime}`
-**{EMOJI} Master:** {mention}"""
+**{EMOJI} قاعدة البيانات :** `{dbhealth}`
+**{EMOJI} اصدار تليثون :** `{telever}`
+**{EMOJI} اصدار ريك ثون  :** `{catver}`
+**{EMOJI} اصدار بايثون :** `{pyver}`
+**{EMOJI} مدة التشغيل :** `{uptime}`
+**{EMOJI} @rickthon:** {mention}"""
 
 
 def catalive_text():
     EMOJI = gvarstatus("ALIVE_EMOJI") or "  ✥ "
-    cat_caption = "**Catuserbot is Up and Running**\n"
-    cat_caption += f"**{EMOJI} Telethon version :** `{version.__version__}\n`"
-    cat_caption += f"**{EMOJI} Catuserbot Version :** `{catversion}`\n"
-    cat_caption += f"**{EMOJI} Python Version :** `{python_version()}\n`"
-    cat_caption += f"**{EMOJI} Master:** {mention}\n"
+    cat_caption = "**بوت ريك ثون يعمل ✓**\n"
+    cat_caption += f"**{EMOJI} اصدار تليثون :** `{version.__version__}\n`"
+    cat_caption += f"**{EMOJI} اصدار ريك ثون :** `{catversion}`\n"
+    cat_caption += f"**{EMOJI} اصدار بايثون :** `{python_version()}\n`"
+    cat_caption += f"**{EMOJI} @rickthon:** {mention}\n"
     return cat_caption
 
 
 @catub.cat_cmd(
-    pattern="ialive$",
+    pattern="انا حي$",
     command=("ialive", plugin_category),
     info={
         "header": "To check bot's alive status via inline mode",
