@@ -13,7 +13,7 @@ from ..core.session import catub
 from ..helpers.utils import _catutils, _format, install_pip, reply_id
 from .decorators import admin_cmd, sudo_cmd
 
-LOGS = logging.getLogger("CatUserbot")
+LOGS = logging.getLogger("RICKTHON")
 
 
 def load_module(shortname, plugin_path=None):
@@ -26,7 +26,7 @@ def load_module(shortname, plugin_path=None):
         spec = importlib.util.spec_from_file_location(name, path)
         mod = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(mod)
-        LOGS.info(f"Successfully imported {shortname}")
+        LOGS.info(f"᯽︙تم بنجاح تحميل ملف {shortname}")
     else:
         if plugin_path is None:
             path = Path(f"userbot/plugins/{shortname}.py")
@@ -56,7 +56,7 @@ def load_module(shortname, plugin_path=None):
         spec.loader.exec_module(mod)
         # for imports
         sys.modules[f"userbot.plugins.{shortname}"] = mod
-        LOGS.info(f"Successfully imported {shortname}")
+        LOGS.info(f"᯽︙تم بنجاح تحميل ملف ✓ {shortname}")
 
 
 def remove_plugin(shortname):
