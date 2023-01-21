@@ -53,36 +53,36 @@ def ibuild_keyboard(buttons):
 
 
 def main_menu():
-    text = f"𝗖𝗮𝘁𝗨𝘀𝗲𝗿𝗯𝗼𝘁 𝗛𝗲𝗹𝗽𝗲𝗿\
+    text = f"𝗥𝗜𝗖𝗞𝗧𝗛𝗢𝗡 𝗛𝗲𝗹𝗽𝗲𝗿\
         \n𝗣𝗿𝗼𝘃𝗶𝗱𝗲𝗱 𝗯𝘆 {mention}"
     buttons = [
-        (Button.inline("ℹ️ Info", data="check"),),
+        (Button.inline("ℹ️ معلومات", data="check"),),
         (
-            Button.inline(f"👮‍♂️ Admin ({len(GRP_INFO['admin'])})", data="admin_menu"),
-            Button.inline(f"🤖 Bot ({len(GRP_INFO['bot'])})", data="bot_menu"),
+            Button.inline(f"👮‍♂️ اوامر الادمن ({len(GRP_INFO['admin'])})", data="admin_menu"),
+            Button.inline(f"🤖 اوامر البوت ({len(GRP_INFO['bot'])})", data="bot_menu"),
         ),
         (
-            Button.inline(f"🎨 Fun ({len(GRP_INFO['fun'])})", data="fun_menu"),
-            Button.inline(f"🧩 Misc ({len(GRP_INFO['misc'])})", data="misc_menu"),
+            Button.inline(f"🎨 اوامر التسلية ({len(GRP_INFO['fun'])})", data="fun_menu"),
+            Button.inline(f"🧩 المتفرقات ({len(GRP_INFO['misc'])})", data="misc_menu"),
         ),
         (
-            Button.inline(f"🧰 Tools ({len(GRP_INFO['tools'])})", data="tools_menu"),
-            Button.inline(f"🗂 Utils ({len(GRP_INFO['utils'])})", data="utils_menu"),
+            Button.inline(f"🧰 الادوات ({len(GRP_INFO['tools'])})", data="tools_menu"),
+            Button.inline(f"🗂 الملفات ({len(GRP_INFO['utils'])})", data="utils_menu"),
         ),
         (
-            Button.inline(f"➕ Extra ({len(GRP_INFO['extra'])})", data="extra_menu"),
-            Button.inline("🔒 Close Menu", data="close"),
+            Button.inline(f"➕ الاكسترا ({len(GRP_INFO['extra'])})", data="extra_menu"),
+            Button.inline("🔒 اغلاق القائمة", data="close"),
         ),
     ]
     if Config.BADCAT:
         switch_button = [
             (
-                Button.inline(f"➕ Extra ({len(GRP_INFO['extra'])})", data="extra_menu"),
+                Button.inline(f"➕ الاكسترا ({len(GRP_INFO['extra'])})", data="extra_menu"),
                 Button.inline(
                     f"⚰️ Useless ({len(GRP_INFO['useless'])})", data="useless_menu"
                 ),
             ),
-            (Button.inline("🔒 Close Menu", data="close"),),
+            (Button.inline("🔒 اغلاق القائمة", data="close"),),
         ]
         buttons = buttons[:-1] + switch_button
 
@@ -118,13 +118,13 @@ async def article_builder(event, method):
         media = "https://github.com/TgCatUB/CatUserbot-Resources/raw/master/Resources/Inline/filemanager.jpg"
     elif method == "deploy":
         media = "https://github.com/TgCatUB/CatUserbot-Resources/raw/master/Resources/Inline/catlogo.png"
-        title = "𝘾𝙖𝙩𝙐𝙨𝙚𝙧𝙗𝙤𝙩"
+        title = "𝗥𝗜𝗖𝗞𝗧𝗛𝗢𝗡"
         description = "Deploy yourself."
-        query = "𝗗𝗲𝗽𝗹𝗼𝘆 𝘆𝗼𝘂𝗿 𝗼𝘄𝗻 𝗖𝗮𝘁𝗨𝘀𝗲𝗿𝗯𝗼𝘁."
+        query = "لتنصيب ريك ثون لك."
         buttons = [
             (
-                Button.url("Source code", "https://github.com/TgCatUB/catuserbot"),
-                Button.url("Deploy", "https://github.com/TgCatUB/nekopack"),
+                Button.url("ريبو السورس", "https://github.com/rick1128/userbot"),
+                Button.url("للتنصيب", "https://dashboard.heroku.com/new?template=https://github.com/rick1128/rickuserbot"),
             )
         ]
 
@@ -141,7 +141,7 @@ async def article_builder(event, method):
         buttons = [
             (
                 Button.inline("Stats", data="stats"),
-                Button.url("Repo", "https://github.com/TgCatUB/catuserbot"),
+                Button.url("Repo", "https://github.com/rick1128/userbot"),
             )
         ]
         try:
@@ -367,7 +367,7 @@ def paginate_help(
                     data=f"{prefix}_prev({modulo_page})_command_{category_plugins}_{category_pgno}",
                 ),
                 Button.inline(
-                    "⬅️ Back ",
+                    "⬅️ رجوع ",
                     data=f"back_plugin_{category_plugins}_{category_pgno}",
                 ),
                 Button.inline(
@@ -382,7 +382,7 @@ def paginate_help(
         pairs = pairs + [
             (
                 Button.inline(
-                    "⬅️ Back ",
+                    "⬅️ رجوع ",
                     data=f"back_plugin_{category_plugins}_{category_pgno}",
                 ),
             )
@@ -426,10 +426,10 @@ async def inline_handler(event):  # sourcery no-metrics
                 sandy = ""
                 if match:
                     query = query[6:]
-                    info_type = ["troll", "can't", "show message 🔐"]
+                    info_type = ["troll", "لايمكنك", "مشاهدة الرساله 🔐"]
                 elif match2:
                     query = query[7:]
-                    info_type = ["secret", "can", "show message 🔐"]
+                    info_type = ["secret", "يمكنك", "مشاهده الرسالة 🔐"]
                 if "|" in query:
                     iris, query = query.replace(" |", "|").replace("| ", "|").split("|")
                     users = iris.split(" ")
@@ -505,11 +505,11 @@ async def inline_handler(event):  # sourcery no-metrics
                             data=f"ytdl_next_{key_}_1",
                         ),
                         Button.inline(
-                            "📜  List all",
+                            "📜  القائمة كلها",
                             data=f"ytdl_listall_{key_}_1",
                         ),
                         Button.inline(
-                            "⬇️  Download",
+                            "⬇️  تحميل",
                             data=f'ytdl_download_{outdata[1]["video_id"]}_0',
                         ),
                     ]
@@ -530,7 +530,7 @@ async def inline_handler(event):  # sourcery no-metrics
                     id=str(uuid4()),
                     type="photo",
                     title=link,
-                    description="⬇️ Click to Download",
+                    description="⬇️ اضغط للتحميل",
                     thumb=photo,
                     content=photo,
                     send_message=types.InputBotInlineMessageMediaAuto(
@@ -823,7 +823,7 @@ async def on_plug_in_callback_query_handler(event):
     buttons = [
         (
             Button.inline(
-                "⬅️ Back ",
+                "⬅️ الرجوع ",
                 data=f"back_command_{category}_{pgno}_{category_plugins}_{category_pgno}",
             ),
             Button.inline("⚙️ Main Menu", data="mainmenu"),
