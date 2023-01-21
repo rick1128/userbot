@@ -11,10 +11,10 @@ plugin_category = "extra"
 
 
 @catub.cat_cmd(
-    pattern="magisk$",
+    pattern="ماجيك$",
     command=("magisk", plugin_category),
     info={
-        "header": "To Get latest Magisk releases",
+        "header": "للحصول على أحدث إصدارات ماجيك",
         "usage": "{tr}magisk",
     },
 )
@@ -22,12 +22,12 @@ async def kakashi(event):
     "Get latest Magisk releases"
     magisk_repo = "https://raw.githubusercontent.com/topjohnwu/magisk-files/"
     magisk_dict = {
-        "⦁ **Stable**": f"{magisk_repo}master/stable.json",
-        "⦁ **Beta**": f"{magisk_repo}master/beta.json",
-        "⦁ **Canary**": f"{magisk_repo}master/canary.json",
+        "⦁ **مستقر**": f"{magisk_repo}master/stable.json",
+        "⦁ **بيتا**": f"{magisk_repo}master/beta.json",
+        "⦁ **كناري**": f"{magisk_repo}master/canary.json",
     }
 
-    releases = "**Latest Magisk Releases**\n\n"
+    releases = "**أحدث إصدارات ماجيك**\n\n"
     for name, release_url in magisk_dict.items():
         data = get(release_url).json()
         releases += (
@@ -38,10 +38,10 @@ async def kakashi(event):
 
 
 @catub.cat_cmd(
-    pattern="device(?: |$)(\S*)",
+    pattern="جهاز(?: |$)(\S*)",
     command=("device", plugin_category),
     info={
-        "header": "To get android device name/model from its codename",
+        "header": "معلومات عن موديل الجهاز واسمه",
         "usage": "{tr}device <codename>",
         "examples": "{tr}device whyred",
     },
@@ -62,23 +62,23 @@ async def device_info(event):
         ).text
     )
     if results := data.get(codename.lower()):
-        reply = f"**Search results for `{codename.lower()}` :**\n\n"
+        reply = f"**نتائج البحث عن `{codename.lower()}` :**\n\n"
         for item in results:
             reply += (
-                f"**Brand**: `{item['brand']}`\n"
-                f"**Name**: `{item['name']}`\n"
-                f"**Model**: `{item['model']}`\n\n"
+                f"**ماركة**: `{item['brand']}`\n"
+                f"**الاسم**: `{item['name']}`\n"
+                f"**نموذج**: `{item['model']}`\n\n"
             )
     else:
-        reply = f"`Couldn't find info about {codename}!`\n"
+        reply = f"`تعذر العثور على معلومات حول {codename}!`\n"
     await edit_or_reply(event, reply)
 
 
 @catub.cat_cmd(
-    pattern="codename(?: |)([\S]*)(?: |)([\s\S]*)",
+    pattern="اسم الكود(?: |)([\S]*)(?: |)([\s\S]*)",
     command=("codename", plugin_category),
     info={
-        "header": "To Search for android device codename",
+        "header": "للبحث عن الاسم الرمزي لجهاز android",
         "usage": "{tr}codename <brand> <device>",
         "examples": "{tr}codename Xiaomi Redmi Note 5 Pro",
     },
@@ -116,20 +116,20 @@ async def codename_info(event):
             results = results[:8]
         for item in results:
             reply += (
-                f"**Device**: `{item['device']}`\n"
-                f"**Name**: `{item['name']}`\n"
-                f"**Model**: `{item['model']}`\n\n"
+                f"**الجهاز**: `{item['device']}`\n"
+                f"**الاسم**: `{item['name']}`\n"
+                f"**الموديل**: `{item['model']}`\n\n"
             )
     else:
-        reply = f"`Couldn't find {device} codename!`\n"
+        reply = f"`لا يمكن العثور {device} اسم الكود!`\n"
     await edit_or_reply(event, reply)
 
 
 @catub.cat_cmd(
-    pattern="twrp(?: |$)(\S*)",
+    pattern="توارب(?: |$)(\S*)",
     command=("twrp", plugin_category),
     info={
-        "header": "To Get latest twrp download links for android device.",
+        "header": "للحصول على أحدث روابط تنزيل توارب لجهاز Android.",
         "usage": "{tr}twrp <codename>",
         "examples": "{tr}twrp whyred",
     },
@@ -155,8 +155,8 @@ async def twrp(event):
     size = page.find("span", {"class": "filesize"}).text
     date = page.find("em").text.strip()
     reply = (
-        f"**Latest TWRP for {device}:**\n"
+        f"**أحدث توارب لـ {device}:**\n"
         f"[{dl_file}]({dl_link}) - __{size}__\n"
-        f"**Updated:** __{date}__\n"
+        f"**محدث:** __{date}__\n"
     )
     await edit_or_reply(event, reply)
