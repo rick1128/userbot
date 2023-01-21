@@ -105,7 +105,7 @@ def catalive_text():
 
 
 @catub.cat_cmd(
-    pattern="انا حي$",
+    pattern="اضف صورة الفحص$",
     command=("ialive", plugin_category),
     info={
         "header": "To check bot's alive status via inline mode",
