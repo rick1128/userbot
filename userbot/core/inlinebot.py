@@ -117,7 +117,7 @@ async def article_builder(event, method):
         thumb = get_thumb("filemanager.jpg")
         media = "https://github.com/TgCatUB/CatUserbot-Resources/raw/master/Resources/Inline/filemanager.jpg"
     elif method == "deploy":
-        media = "https://github.com/TgCatUB/CatUserbot-Resources/raw/master/Resources/Inline/catlogo.png"
+        media = "https://graph.org/file/03fecc7bd69cb6f139352.jpg"
         title = "𝗥𝗜𝗖𝗞𝗧𝗛𝗢𝗡"
         description = "Deploy yourself."
         query = "لتنصيب ريك ثون لك."
