@@ -66,10 +66,10 @@ async def gen_chlog(repo, diff):
 
 async def print_changelogs(event, ac_br, changelog):
     changelog_str = (
-        f"**New UPDATE available for [{ac_br}]:\n\nCHANGELOG:**\n`{changelog}`"
+        f"**تحديث جديد لـ [{ac_br}]:\n\nالسجلات:**\n`{changelog}`"
     )
     if len(changelog_str) > 4096:
-        await event.edit("`Changelog is too big, view the file to see it.`")
+        await event.edit("`التحديث كبير جدا.`")
         with open("output.txt", "w+") as file:
             file.write(changelog_str)
         await event.client.send_file(
@@ -119,13 +119,13 @@ async def update_bot(event, repo, ups_rem, ac_br):
 
 async def deploy(event, repo, ups_rem, ac_br, txt):
     if HEROKU_API_KEY is None:
-        return await event.edit("`Please set up`  **HEROKU_API_KEY**  ` Var...`")
+        return await event.edit("`يرجى اضافه `  **HEROKU_API_KEY**  ` فار...`")
     heroku = heroku3.from_key(HEROKU_API_KEY)
     heroku_applications = heroku.apps()
     if HEROKU_APP_NAME is None:
         await event.edit(
-            "`Please set up the` **HEROKU_APP_NAME** `Var`"
-            " to be able to deploy your userbot...`"
+            "`يرجى ادخال ` **HEROKU_APP_NAME** `فار`"
+            " لكي يتم التحديث...`"
         )
         repo.__del__()
         return
@@ -187,10 +187,10 @@ async def deploy(event, repo, ups_rem, ac_br, txt):
 
 
 @catub.cat_cmd(
-    pattern="update(| now)?$",
-    command=("update", plugin_category),
+    pattern="تحديث(| الان)?$",
+    command=("تحديث", plugin_category),
     info={
-        "header": "To update userbot.",
+        "header": "لتحديث السورس.",
         "description": "I recommend you to do update deploy atlest once a week.",
         "options": {
             "now": "Will update bot but requirements doesnt update.",
@@ -215,8 +215,8 @@ async def upstream(event):
         )
     try:
         txt = (
-            "`Oops.. Updater cannot continue due to "
-            + "some problems occured`\n\n**LOGTRACE:**\n"
+            "`عفوا... لايمكن ان يستمر التحديث لسبب "
+            + "حدثت بعض المشاكل`\n\n**LOGTRACE:**\n"
         )
 
         repo = Repo()
@@ -279,7 +279,7 @@ async def upstream(event):
 
 
 @catub.cat_cmd(
-    pattern="update deploy$",
+    pattern="تحديث التنصيب$",
 )
 async def upstream(event):
     if ENV:
@@ -293,12 +293,12 @@ async def upstream(event):
             f"I guess you are on selfhost. For self host you need to use `{cmdhd}update now`",
         )
     event = await edit_or_reply(event, "`Pulling the nekopack repo wait a sec ....`")
-    off_repo = "https://github.com/TgCatUB/nekopack"
+    off_repo = "https://github.com/rick1128/rickuserbot"
     os.chdir("/app")
     try:
         txt = (
-            "`Oops.. Updater cannot continue due to "
-            + "some problems occured`\n\n**LOGTRACE:**\n"
+            "`عفوا.. لايمكن اكمال التحديث بسبب"
+            + "حدثت بعض المشاكل`\n\n**LOGTRACE:**\n"
         )
 
         repo = Repo()
@@ -325,7 +325,7 @@ async def upstream(event):
 
 
 @catub.cat_cmd(
-    pattern="(good|bad)cat$",
+    pattern="(جيد|bad)ريك$",
     command=("switch", plugin_category),
     info={
         "header": "To switch between goodcat & badcat(For extra nsfw and gali).",
