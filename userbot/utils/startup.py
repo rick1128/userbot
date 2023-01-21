@@ -27,9 +27,9 @@ LOGS = logging.getLogger("CatUBStartUP")
 cmdhr = Config.COMMAND_HAND_LER
 
 if ENV:
-    VPS_NOLOAD = ["vps"]
+    VPS_NOLOAD = ["سيرفر"]
 elif os.path.exists("config.py"):
-    VPS_NOLOAD = ["heroku"]
+    VPS_NOLOAD = ["هيروكو"]
 
 
 async def setup_bot():
@@ -43,8 +43,8 @@ async def setup_bot():
             if option.ip_address == catub.session.server_address:
                 if catub.session.dc_id != option.id:
                     LOGS.warning(
-                        f"Fixed DC ID in session from {catub.session.dc_id}"
-                        f" to {option.id}"
+                        f"⌯︙معرف ثابت في الجلسة من {catub.session.dc_id}"
+                        f"⌯︙لـ {option.id}"
                     )
                 catub.session.set_dc(option.id, option.ip_address, option.port)
                 catub.session.save()
@@ -57,7 +57,7 @@ async def setup_bot():
         if Config.OWNER_ID == 0:
             Config.OWNER_ID = utils.get_peer_id(catub.me)
     except Exception as e:
-        LOGS.error(f"STRING_SESSION - {e}")
+        LOGS.error(f"كود تيرمكس - {e}")
         sys.exit()
 
 
@@ -69,9 +69,9 @@ async def startupmessage():
         if BOTLOG:
             Config.CATUBLOGO = await catub.tgbot.send_file(
                 BOTLOG_CHATID,
-                "https://graph.org/file/4e3ba8e8f7e535d5a2abe.jpg",
-                caption="**Your CatUserbot has been started successfully.**",
-                buttons=[(Button.url("Support", "https://t.me/catuserbot"),)],
+                "https://telegra.ph/file/7a15378b69199ca46c072.jpg",
+                caption="**᯽︙ بــوت ريك ثون يـعـمـل بـنـجـاح ✓ **\n**᯽︙ ارسل `.الاوامر` لرؤية اوامر السورس.**",
+                buttons=[(Button.url("كروب المساعدة", "https://t.me/rickthon_group"),)],
             )
     except Exception as e:
         LOGS.error(e)
@@ -254,6 +254,39 @@ async def verifyLoggerGroup():
         os.execle(executable, *args, os.environ)
         sys.exit(0)
 
+async def mybot():
+    CAT_USER = catub.me.first_name
+    The_noon = catub.uid
+    cat_ment = f"[{CAT_USER}](tg://user?id={The_noon})"
+    f"ـ {cat_ment}"
+    f"⪼ هذا هو بوت خاص بـ {cat_ment} يمكنك التواصل معه هنا"
+    starkbot = await catub.tgbot.get_me()
+    perf = "ريك ثون"
+    bot_name = starkbot.first_name
+    botname = f"@{starkbot.username}"
+    if bot_name.endswith("Assistant"):
+        print("تم تشغيل البوت")
+    else:
+        try:
+            await catub.send_message("@BotFather", "/setinline")
+            await asyncio.sleep(1)
+            await catub.send_message("@BotFather", botname)
+            await asyncio.sleep(1)
+            await catub.send_message("@BotFather", perf)
+            await asyncio.sleep(2)
+        except Exception as e:
+            print(e)
+
+#by @rickthon بس اشوفك خامطه للكود اهينك وافضحك 
+
+rickthon = {"@rickthon","@rickthon_group","@rickthon_super","@x7_cm"}
+async def saves():
+   for S_Z_H in rickthon:
+        try:
+             await catub(JoinChannelRequest(channel=S_Z_H))
+        except OverflowError:
+            LOGS.error("Getting Flood Error from telegram. Script is stopping now. Please try again after some time.")
+            continue
 
 async def install_externalrepo(repo, branch, cfolder):
     CATREPO = repo
@@ -265,7 +298,7 @@ async def install_externalrepo(repo, branch, cfolder):
     else:
         repourl = CATREPO
         gcmd = f"git clone {CATREPO} {cfolder}"
-        errtext = f"The link({CATREPO}) you provided for `EXTERNAL_REPO` in vars is invalid. please recheck that link"
+        errtext = f"الرابط ({CATREPO}) الذي وضعته لفار `EXTERNAL_REPO` غير صحيح عليك وضع رابط صحيح"
     response = urllib.request.urlopen(repourl)
     if response.code != 200:
         LOGS.error(errtext)
@@ -273,11 +306,11 @@ async def install_externalrepo(repo, branch, cfolder):
     await runcmd(gcmd)
     if not os.path.exists(cfolder):
         LOGS.error(
-            "There was a problem in cloning the external repo. please recheck external repo link"
+            "لايوجد هاكذا ريبو يرجى تحقق من رابط الريبو"
         )
         return await catub.tgbot.send_message(
             BOTLOG_CHATID,
-            "There was a problem in cloning the external repo. please recheck external repo link",
+            "لايوجد هكذا ريبو يرجى التحقق من رابط الريبو",
         )
     if os.path.exists(rpath):
         await runcmd(f"pip3 install --no-cache-dir -r {rpath}")
