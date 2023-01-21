@@ -108,7 +108,7 @@ async def update_bot(event, repo, ups_rem, ac_br):
         repo.git.reset("--hard", "FETCH_HEAD")
     await update_requirements()
     sandy = await event.edit(
-        "`Successfully Updated!\n" "Bot is restarting... Wait for a minute!`"
+        "`تم التحديث!\n" "يتم اعاده تشغيل البوت انتضر بعض الدقائق..!`"
     )
     if os.path.exists("config.py"):
         from userbot.plugins.vps import switch_branch
@@ -257,7 +257,7 @@ async def upstream(event):
     # Special case for deploy
     if changelog == "" and not force_update:
         await event.edit(
-            "\n`CATUSERBOT is`  **up-to-date**  `with`  "
+            "\n`ريك ثون`  **محدث**  `مع`  "
             f"**{UPSTREAM_REPO_BRANCH}**\n"
         )
         return repo.__del__()
