@@ -87,7 +87,7 @@ async def startupmessage():
         if msg_details:
             await catub.check_testcases()
             message = await catub.get_messages(msg_details[0], ids=msg_details[1])
-            text = message.text + "\n\n**Ok Bot is Back and Alive.**"
+            text = message.text + "\n\n**تم اعادة تشغيل السورس.**"
             await catub.edit_message(msg_details[0], msg_details[1], text)
             if gvarstatus("restartupdate") is not None:
                 await catub.send_message(
@@ -220,11 +220,11 @@ async def verifyLoggerGroup():
     else:
         descript = "Don't delete this group or change to group(If you change group all your previous snips, welcome will be lost.)"
         _, groupid = await create_supergroup(
-            "CatUserbot BotLog Group", catub, Config.TG_BOT_USERNAME, descript
+            "مجموعة التخزين ريك ثون", catub, Config.TG_BOT_USERNAME, descript
         )
         addgvar("PRIVATE_GROUP_BOT_API_ID", groupid)
         print(
-            "Private Group for PRIVATE_GROUP_BOT_API_ID is created successfully and added to vars."
+            "تم انشاء مجموعة التخزين بنجاح PRIVATE_GROUP_BOT_API_ID واضافتة الى الفارات."
         )
         flag = True
     if PM_LOGGER_GROUP_ID != -100:
@@ -254,28 +254,7 @@ async def verifyLoggerGroup():
         os.execle(executable, *args, os.environ)
         sys.exit(0)
 
-async def mybot():
-    CAT_USER = catub.me.first_name
-    The_noon = catub.uid
-    cat_ment = f"[{CAT_USER}](tg://user?id={The_noon})"
-    f"ـ {cat_ment}"
-    f"⪼ هذا هو بوت خاص بـ {cat_ment} يمكنك التواصل معه هنا"
-    starkbot = await catub.tgbot.get_me()
-    perf = "ريك ثون"
-    bot_name = starkbot.first_name
-    botname = f"@{starkbot.username}"
-    if bot_name.endswith("Assistant"):
-        print("تم تشغيل البوت")
-    else:
-        try:
-            await catub.send_message("@BotFather", "/setinline")
-            await asyncio.sleep(1)
-            await catub.send_message("@BotFather", botname)
-            await asyncio.sleep(1)
-            await catub.send_message("@BotFather", perf)
-            await asyncio.sleep(2)
-        except Exception as e:
-            print(e)
+
 
 #by @rickthon بس اشوفك خامطه للكود اهينك وافضحك 
 
