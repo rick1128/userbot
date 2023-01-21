@@ -50,7 +50,7 @@ async def check_bot_started_users(user, event):
         start_date = str(datetime.now().strftime("%B %d, %Y"))
         notification = f"👤 {_format.mentionuser(user.first_name , user.id)} has started me.\
                 \n**الايدي: **`{user.id}`\
-                \n**الاسن: **{get_display_name(user)}"
+                \n**الاسم : **{get_display_name(user)}"
     else:
         start_date = check.date
         notification = f"👤 {_format.mentionuser(user.first_name , user.id)} has restarted me.\
@@ -107,7 +107,7 @@ async def bot_start(event):  # sourcery skip: low-code-quality
             start_msg = f"أهلًا! 👤{mention},\
                         \nانا {my_mention}البوت المساعد الخاص بـ.\
                         \n يمكنك التواصل بمطوري من هنا.\
-                        \n\nقناة السورس [تيبثون](https://t.me/rickthon)"
+                        \n\nقناة السورس [ريك ثون](https://t.me/rickthon)"
         buttons = [
             (
                 Button.url("كروب الدعم 🛠️", "t.me/rickthon_group"),
