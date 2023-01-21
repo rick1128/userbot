@@ -51,10 +51,10 @@ plugin_category = "extra"
 
 
 @catub.cat_cmd(
-    pattern="aq$",
+    pattern="اقتباسات انمي$",
     command=("aq", plugin_category),
     info={
-        "header": "Get random Anime quotes.",
+        "header": "احصل على اقتباسات أنمي عشوائية.",
         "usage": "{tr}aq",
         "examples": "{tr}aq",
     },
@@ -66,16 +66,16 @@ async def anime_quote(event):
     quote = data["quote"]
     await edit_or_reply(
         event,
-        f"• <b>Anime</b> (アニメ) <b>:</b>\n ➥ <i>{anime}</i>\n\n• <b>Character:</b> (キャラクター) <b>:</b>\n ➥ <i>{character}</i>\n\n• <b>Quote:</b> (言っている) <b>:</b>\n ➥ <i>{quote}</i>",
+        f"• <b>انمي</b> (アニメ) <b>:</b>\n ➥ <i>{anime}</i>\n\n• <b>حرف:</b> (キャラクター) <b>:</b>\n ➥ <i>{character}</i>\n\n• <b>يقتبس:</b> (言っている) <b>:</b>\n ➥ <i>{quote}</i>",
         parse_mode="html",
     )
 
 
 @catub.cat_cmd(
-    pattern="aluser(?:\s|$)([\s\S]*)",
+    pattern="يوزر شخص(?:\s|$)([\s\S]*)",
     command=("aluser", plugin_category),
     info={
-        "header": "Search User profiles in anilist.",
+        "header": "بحث في ملفات تعريف المستخدم في أنيليست.",
         "usage": "{tr}aluser <username>",
         "examples": "{tr}aluser Infinity20998",
     },
@@ -90,11 +90,11 @@ async def anilist_usersearch(event):
             search_query = reply.text
         else:
             return await edit_delete(event, "__Whom should i search.__")
-    catevent = await edit_or_reply(event, "`Searching user profile in anilist...`")
+    catevent = await edit_or_reply(event, "`البحث في ملف تعريف المستخدم في انليست...`")
     searchresult = await anilist_user(search_query)
     if len(searchresult) == 1:
         return await edit_or_reply(
-            catevent, f"**Error while searching user profile:**\n{searchresult[0]}"
+            catevent, f"**خطأ أثناء البحث عن ملف تعريف المستخدم:**\n{searchresult[0]}"
         )
     downloader = SmartDL(searchresult[1], ppath, progress_bar=False)
     downloader.start(blocking=False)
@@ -111,16 +111,16 @@ async def anilist_usersearch(event):
 
 
 @catub.cat_cmd(
-    pattern="mal(?:\s|$)([\s\S]*)",
+    pattern="ميل(?:\s|$)([\s\S]*)",
     command=("mal", plugin_category),
     info={
-        "header": "Search profiles of MAL.",
+        "header": "لمحات البحث عن ميل.",
         "usage": "{tr}mal <username>",
         "examples": "{tr}mal Infinity20998",
     },
 )
 async def user(event):
-    "Search profiles of MAL."
+    "لمحات البحث عن ميل."
     search_query = event.pattern_match.group(1)
     replyto = await reply_id(event)
     reply = await event.get_reply_message()
@@ -155,12 +155,12 @@ async def user(event):
     caption = ""
     caption += textwrap.dedent(
         f"""
-    **Username:** [{user['username']}]({user['url']})
-    **Gender:** `{user['gender']}`
-    **MAL ID:** `{user['user_id']}`
-    **Birthday:** `{user_birthday_formatted}`
-    **Joined:** `{user_joined_date_formatted}`
-    **Last Online:** `{user_last_online_formatted}`
+    **يوزر المستخدم:** [{user['username']}]({user['url']})
+    **جنس تذكير أو تأنيث:** `{user['gender']}`
+    **ميل ايدي:** `{user['user_id']}`
+    **عيد ميلاد:** `{user_birthday_formatted}`
+    **انضم:** `{user_joined_date_formatted}`
+    **أخر ظهور علي الانترنت:** `{user_last_online_formatted}`
     
     **Days wasted watching Anime:** `{user['anime_stats']['days_watched']}`
     **No of completed Animes:** `{user['anime_stats']['completed']}`
@@ -177,10 +177,10 @@ async def user(event):
 
 
 @catub.cat_cmd(
-    pattern="airing(?:\s|$)([\s\S]*)",
+    pattern="بث(?:\s|$)([\s\S]*)",
     command=("airing", plugin_category),
     info={
-        "header": "Shows you the time left for the new episode of current running anime show.",
+        "header": "يظهر لك الوقت المتبقي للحلقة الجديدة من عرض الأنيمي الحالي.",
         "usage": "{tr}airing",
         "examples": "{tr}airing one piece",
     },
@@ -196,23 +196,23 @@ async def anilist(event):
     ).json()["data"]["Media"]
     if response is None:
         return await edit_delete(event, "__Unable to find the anime.__")
-    ms_g = f"**Name**: **{response['title']['romaji']}**(`{response['title']['native']}`)\n**ID**: `{response['id']}`"
+    ms_g = f"**اسم**: **{response['title']['romaji']}**(`{response['title']['native']}`)\n**ID**: `{response['id']}`"
     if response["nextAiringEpisode"]:
         airing_time = response["nextAiringEpisode"]["timeUntilAiring"]
         airing_time_final = time_formatter(airing_time)
         airing_at = response["nextAiringEpisode"]["airingAt"]
-        ms_g += f"\n**Episode**: `{response['nextAiringEpisode']['episode']}`\n**Airing In**: `{airing_time_final}`\n**Time: **`{datetime.fromtimestamp(airing_at)}`"
+        ms_g += f"\n**حلقة**: `{response['nextAiringEpisode']['episode']}`\n**Airing In**: `{airing_time_final}`\n**Time: **`{datetime.fromtimestamp(airing_at)}`"
     else:
-        ms_g += f"\n**Episode**:{response['episodes']}\n**Status**: `N/A`"
+        ms_g += f"\n**حلقة**:{response['episodes']}\n**Status**: `N/A`"
     await edit_or_reply(event, ms_g)
 
 
 @catub.cat_cmd(
-    pattern="anime(?:\s|$)([\s\S]*)",
+    pattern="انمي(?:\s|$)([\s\S]*)",
     command=("anime", plugin_category),
     info={
         "header": "search anime.",
-        "description": "Fetches anime information from anilist",
+        "description": "يجلب معلومات أنيمي من انليست",
         "flags": {
             "d": "shows you anime details (another format)",
             "s": "anime search list (shows only anime name and link to anilist)",
@@ -269,7 +269,7 @@ async def anilist(event):  # sourcery no-metrics
         return await edit_delete(catevent, result)
     if len(result) == 0:
         return await edit_or_reply(
-            catevent, f"**Search query:** `{query}`\n**Result:** `No results found`"
+            catevent, f"**استعلام بحث:** `{query}`\n**Result:** `No results found`"
         )
     input_str = result[0]["title"]["english"] or result[0]["title"]["romaji"]
     if myanime:
@@ -278,7 +278,7 @@ async def anilist(event):  # sourcery no-metrics
         await catevent.edit(msg, link_preview=True)
         return
     if listview:
-        msg = f"<b>Search Query: </b> <code>{query}</code>\n\n<b>Results:</b>\n"
+        msg = f"<b>استعلام بحث: </b> <code>{query}</code>\n\n<b>Results:</b>\n"
         i = 1
         ani_data = result
         for result in ani_data:
@@ -324,11 +324,11 @@ async def anilist(event):  # sourcery no-metrics
 
 
 @catub.cat_cmd(
-    pattern="manga(?:\s|$)([\s\S]*)",
+    pattern="مانجا(?:\s|$)([\s\S]*)",
     command=("manga", plugin_category),
     info={
         "header": "search manga.",
-        "description": "Fetches manga information from anilist",
+        "description": "يجلب معلومات المانجا من انليست",
         "flags": {
             "d": "shows you manga details (another format)",
             "s": "manga search list (shows only manga name and link to anilist)",
@@ -385,7 +385,7 @@ async def anilist(event):  # sourcery no-metrics
         return await edit_delete(catevent, result)
     if len(result) == 0:
         return await edit_or_reply(
-            catevent, f"**Search query:** `{query}`\n**Result:** `No results found`"
+            catevent, f"**استعلام بحث:** `{query}`\n**نتيجة:** `لم يتم العثور على نتائج`"
         )
     input_str = result[0]["title"]["english"] or result[0]["title"]["romaji"]
     if myanime:
@@ -394,7 +394,7 @@ async def anilist(event):  # sourcery no-metrics
         await catevent.edit(msg, link_preview=True)
         return
     if listview:
-        msg = f"<b>Search Query: </b> <code>{query}</code>\n\n<b>Results:</b>\n"
+        msg = f"<b>استعلام بحث: </b> <code>{query}</code>\n\n<b>نتائج:</b>\n"
         i = 1
         ani_data = result
         for result in ani_data:
@@ -440,10 +440,10 @@ async def anilist(event):  # sourcery no-metrics
 
 
 @catub.cat_cmd(
-    pattern="fillers(?:\s|$)([\s\S]*)",
+    pattern="الحشو(?:\s|$)([\s\S]*)",
     command=("fillers", plugin_category),
     info={
-        "header": "To get list of filler episodes.",
+        "header": "للحصول على قائمة حلقات الحشو.",
         "flags": {
             "-n": "If more than one name have same common word then to select required anime"
         },
@@ -477,13 +477,13 @@ async def get_anime(event):
     result = await search_in_animefiller(input_str)
     if result == {}:
         return await edit_or_reply(
-            event, f"**No filler episodes for the given anime**` {input_str}`"
+            event, f"**لا توجد حلقات حشو لأنيمي معين**` {input_str}`"
         )
     if len(result) == 1:
         response = await get_filler_episodes(result[list(result.keys())[0]])
         msg = ""
-        msg += f"**Fillers for anime** `{list(result.keys())[0]}`**"
-        msg += "\n\n• Manga Canon episodes:**`\n"
+        msg += f"**الحشو لأنيمي** `{list(result.keys())[0]}`**"
+        msg += "\n\n• حلقات المانجا كانون:**`\n"
         msg += str(response.get("total_ep"))
         msg += "\n\n`**• Mixed/Canon fillers:**`\n"
         msg += str(response.get("mixed_ep"))
@@ -495,19 +495,19 @@ async def get_anime(event):
         msg += "`"
         return await edit_or_reply(event, msg)
     if anime == 0:
-        msg = f"**More than 1 result found for {input_str}. so try as** `{Config.COMMAND_HAND_LER}fillers -n<number> {input_str}`\n\n"
+        msg = f"**تم العثور على أكثر من 1 نتيجة لـ {input_str}. لذا حاول كما** `{Config.COMMAND_HAND_LER}fillers -n<number> {input_str}`\n\n"
         for i, an in enumerate(list(result.keys()), start=1):
             msg += f"{i}. {an}\n"
         return await edit_or_reply(event, msg)
     try:
         response = await get_filler_episodes(result[list(result.keys())[anime - 1]])
     except IndexError:
-        msg = f"**Given index for {input_str} is wrong check again for correct index and then try** `{Config.COMMAND_HAND_LER}fillers -n<index> {input_str}`\n\n"
+        msg = f"**مؤشر معين لـ {input_str} هو خطأ تحقق مرة أخرى للفهرس الصحيح ثم حاول** `{Config.COMMAND_HAND_LER}fillers -n<index> {input_str}`\n\n"
         for i, an in enumerate(list(result.keys()), start=1):
             msg += f"{i}. {an}\n"
         return await edit_or_reply(event, msg)
     msg = ""
-    msg += f"**Fillers for anime** `{list(result.keys())[anime-1]}`**"
+    msg += f"**الحشو لأنيمي** `{list(result.keys())[anime-1]}`**"
     msg += "\n\n• Manga Canon episodes:**`\n"
     msg += str(response.get("total_ep"))
     msg += "\n\n`**• Mixed/Canon fillers:**`\n"
@@ -522,10 +522,10 @@ async def get_anime(event):
 
 
 @catub.cat_cmd(
-    pattern="char(?:\s|$)([\s\S]*)",
+    pattern="شار(?:\s|$)([\s\S]*)",
     command=("char", plugin_category),
     info={
-        "header": "search character.",
+        "header": "شخصية البحث.",
         "description": "Fetches character information from anilist",
         "flags": {
             "s": "character search list (shows only character name and link to anilist)",
@@ -605,13 +605,13 @@ async def anilist(event):  # sourcery no-metrics
     dob = "-".join(dateofbirth) if dateofbirth else "Unknown"
     caption = textwrap.dedent(
         f"""
-        🆎 <b> Name</b>: <i>{result['name']['full']}</i>
-        🆔 <b>AL ID</b>: <i>{result['id']}</i>
-        👫 <b>Gender</b>: <i>{result['gender'].lower()}</i>
-        🔢 <b>Age</b>: <i>{result['age']}</i>
-        🎂 <b>Date of Birth</b>: {dob}
-        📃 <b>Blood Type</b>: <i>{result['bloodType']}</i>
-        📊 <b>Liked By</b>: <i>{result['favourites']}</i>
+        🆎 <b> الاسم</b>: <i>{result['name']['full']}</i>
+        🆔 <b>AL ايدي</b>: <i>{result['id']}</i>
+        👫 <b>جنس تذكير أو تأنيث</b>: <i>{result['gender'].lower()}</i>
+        🔢 <b>العمر</b>: <i>{result['age']}</i>
+        🎂 <b>تاريخ الولادة</b>: {dob}
+        📃 <b>فصيلة الدم</b>: <i>{result['bloodType']}</i>
+        📊 <b>اعجب به</b>: <i>{result['favourites']}</i>
         """
     )
     html_ = f"""<a href="{result['siteUrl']}">"""
@@ -717,10 +717,10 @@ async def anime_download(event):  # sourcery no-metrics
 
 
 @catub.cat_cmd(
-    pattern="upcoming$",
+    pattern="القادمة$",
     command=("upcoming", plugin_category),
     info={
-        "header": "Shows you upcoming anime's.",
+        "header": "يظهر لك الأنمي القادم.",
         "usage": "{tr}upcoming",
     },
 )
@@ -739,11 +739,11 @@ async def upcoming(event):
 
 
 @catub.cat_cmd(
-    pattern="aschedule(?: |$)([\S\s]*)",
+    pattern="جدول(?: |$)([\S\s]*)",
     command=("aschedule", plugin_category),
     info={
         "header": "Shows you animes to be aired on that day.",
-        "description": "To get list of animes to be aired on that day use can also use 0 for monday , 1 for tuesday.... 6 for sunday.",
+        "description": "للحصول على قائمة الرسوم الكرتونية التي سيتم بثها في ذلك اليوم ، يمكنك أيضًا استخدام 0 ليوم الاثنين ، و 1 يوم الثلاثاء .... 6 ليوم الأحد.",
         "usage": "{tr}aschedule <weekdays/[0-6]>",
         "example": ["{tr}aschedule sunday", "{tr}aschedule 5"],
     },
