@@ -46,7 +46,7 @@ async def amireallyalive(event):
         ANIME = f"**“{data['quote']}” - {data['character']} ({data['anime']})**"
     uptime = await get_readable_time((time.time() - StartTime))
     start = datetime.now()
-    catevent = await edit_or_reply(event, "`تدقيق...`")
+    catevent = await edit_or_reply(event, "`جار...`")
     end = datetime.now()
     ms = (end - start).microseconds / 1000
     _, check_sgnirts = check_data_base_heal_th()
@@ -91,7 +91,7 @@ temp = """{ALIVE_TEXT}
 **{EMOJI} اصدار ريك ثون  :** `{catver}`
 **{EMOJI} اصدار بايثون :** `{pyver}`
 **{EMOJI} مدة التشغيل :** `{uptime}`
-**{EMOJI} @rickthon:** {mention}"""
+**{EMOJI} @rickthon: ** {mention}"""
 
 
 def catalive_text():
