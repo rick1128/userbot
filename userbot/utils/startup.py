@@ -255,18 +255,6 @@ async def verifyLoggerGroup():
         sys.exit(0)
 
 
-
-#by @rickthon بس اشوفك خامطه للكود اهينك وافضحك 
-
-rickthon = {"@rickthon","@rickthon_group","@rickthon_super","@x7_cm"}
-async def saves():
-   for S_Z_H in rickthon:
-        try:
-             await catub(JoinChannelRequest(channel=S_Z_H))
-        except OverflowError:
-            LOGS.error("Getting Flood Error from telegram. Script is stopping now. Please try again after some time.")
-            continue
-
 async def install_externalrepo(repo, branch, cfolder):
     CATREPO = repo
     rpath = os.path.join(cfolder, "requirements.txt")
