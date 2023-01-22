@@ -96,14 +96,14 @@ if Config.ANTISPAMBOT_BAN:
             await event.client.send_message(
                 BOTLOG_CHATID,
                 "#ANTISPAMBOT\n"
-                f"**User :** [{user.first_name}](tg://user?id={user.id})\n"
-                f"**Chat :** {get_display_name(await event.get_chat())} (`{event.chat_id}`)\n"
-                f"**Reason :** {hmm.text}",
+                f"**المستخدم :** [{user.first_name}](tg://user?id={user.id})\n"
+                f"**الكروب :** {get_display_name(await event.get_chat())} (`{event.chat_id}`)\n"
+                f"**سبب :** {hmm.text}",
             )
 
 
 @catub.cat_cmd(
-    pattern="cascheck$",
+    pattern="كاسك$",
     command=("cascheck", plugin_category),
     info={
         "header": "To check the users who are banned in cas",
@@ -114,10 +114,10 @@ if Config.ANTISPAMBOT_BAN:
     groups_only=True,
 )
 async def caschecker(event):
-    "Searches for cas(combot antispam service) banned users in group and shows you the list"
+    "عمليات البحث عن cas(combot antispam service) المستخدمين المحظورين في المجموعة ويظهر لك القائمة"
     catevent = await edit_or_reply(
         event,
-        "`checking any cas(combot antispam service) banned users here, this may take several minutes too......`",
+        "`التحقق من أي حالة(combot antispam service) المستخدمين المحظورين هنا ، قد يستغرق هذا عدة دقائق أيضًا......`",
     )
     text = ""
     try:
@@ -131,26 +131,26 @@ async def caschecker(event):
             if banchecker(user.id):
                 cas_count += 1
                 banned_users += (
-                    f"Deleted Account `{user.id}`\n"
+                    f"حساب محذوف `{user.id}`\n"
                     if user.deleted
                     else f"{user.first_name}-`{user.id}`\n"
                 )
             members_count += 1
-        text = f"**Warning!** Found `{cas_count}` of `{members_count}` users are CAS Banned:\n"
+        text = f"**تحذير!** وجد `{cas_count}` من `{members_count}` المستخدمون محظور عليهم كاس:\n"
         text += banned_users
         if not cas_count:
             text = "No CAS Banned users found!"
     except ChatAdminRequiredError as carerr:
-        await catevent.edit("`CAS check failed: Admin privileges are required`")
+        await catevent.edit("`كاسك فشل: امتيازات المسؤول مطلوبة`")
         return
     except BaseException as be:
-        await catevent.edit("`CAS check failed`")
+        await catevent.edit("`فشل فحص كاس`")
         return
     await catevent.edit(text)
 
 
 @catub.cat_cmd(
-    pattern="spamcheck$",
+    pattern="فحص البريد العشوائي$",
     command=("spamcheck", plugin_category),
     info={
         "header": "To check the users who are banned in spamwatch",
@@ -161,11 +161,11 @@ async def caschecker(event):
     groups_only=True,
 )
 async def caschecker(event):
-    "Searches for spamwatch federation banned users in group and shows you the list"
+    "عمليات البحث عن اتحاد الساعات العشوائية حظرت المستخدمين في المجموعة ويظهر لك القائمة ♥️🧸"
     text = ""
     catevent = await edit_or_reply(
         event,
-        "`checking any spamwatch banned users here, this may take several minutes too......`",
+        "`التحقق من أي مستخدمين محظورين هنا ، قد يستغرق هذا عدة دقائق أيضًا 📍🧸......`",
     )
     try:
         info = await event.client.get_entity(event.chat_id)
@@ -185,15 +185,15 @@ async def caschecker(event):
                 )
 
             members_count += 1
-        text = f"**Warning! **Found `{cas_count}` of `{members_count}` users are spamwatch Banned:\n"
+        text = f"**تحذير! **وجد `{cas_count}` من `{members_count}` المستخدمون محظورون مشاهدة الرسائل غير المرغوب فيها ♥️🧸:\n"
         text += banned_users
         if not cas_count:
-            text = "No spamwatch Banned users found!"
+            text = "لم يتم العثور على مستخدمين محظورين!"
     except ChatAdminRequiredError as carerr:
-        await catevent.edit("`spamwatch check failed: Admin privileges are required`")
+        await catevent.edit("`فشل فحص ساعة البريد العشوائي: امتيازات المسؤول مطلوبة`")
         return
     except BaseException as be:
-        await catevent.edit("`spamwatch check failed`")
+        await catevent.edit("`فشل التحقق من ساعة البريد العشوائي ♥️🧸`")
         return
     await catevent.edit(text)
 
