@@ -15,10 +15,10 @@ plugin_category = "tools"
 
 
 @catub.cat_cmd(
-    pattern="help ?(-c|-p|-t)? ?([\s\S]*)?",
+    pattern="مساعدة ?(-c|-p|-t)? ?([\s\S]*)?",
     command=("help", plugin_category),
     info={
-        "header": "To get guide for catuserbot.",
+        "header": "To get guide for rickthon.",
         "description": "To get information or guide for the command or plugin",
         "note": "if command name and plugin name is same then you get guide for plugin. So by using this flag you get command guide",
         "flags": {
@@ -34,7 +34,7 @@ plugin_category = "tools"
     },
 )
 async def _(event):
-    "To get guide for catuserbot."
+    "To get guide for rickthon."
     flag = event.pattern_match.group(1)
     input_str = event.pattern_match.group(2)
     reply_to_id = await reply_id(event)
@@ -57,7 +57,7 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="cmds(?:\s|$)([\s\S]*)",
+    pattern="الاوامر(?:\s|$)([\s\S]*)",
     command=("cmds", plugin_category),
     info={
         "header": "To show list of cmds.",
@@ -77,7 +77,7 @@ async def _(event):
             return await edit_delete(event, "__Invalid plugin name recheck it.__")
         except Exception as e:
             return await edit_delete(event, f"**Error**\n`{e}`")
-        outstr = f"• **{input_str.title()} has {len(cmds)} commands**\n"
+        outstr = f"• **{input_str.title()} هذا هو {len(cmds)} الاوامر**\n"
         for cmd in cmds:
             outstr += f"  - `{cmdprefix}{cmd}`\n"
         outstr += f"**👩‍💻 Usage : ** `{cmdprefix}help -c <command name>`"
@@ -89,7 +89,7 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="s ([\s\S]*)",
+    pattern="بحث ([\s\S]*)",
     command=("s", plugin_category),
     info={
         "header": "To search commands.",
