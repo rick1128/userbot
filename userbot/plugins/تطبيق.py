@@ -1,6 +1,6 @@
-# \\ Created by-@Jisan7509 -- Github.com/Jisan09 //
-#  \\   https://github.com/TgCatUB/catuserbot   //
-#   \\       Plugin for @catuserbot            //
+# \\ Created by-@S_Z_H //
+#  \\   https://github.com/rick1128/userbot   //
+#   \\       Plugin for @RICKTHON            //
 #    ```````````````````````````````````````````
 
 import os
@@ -33,7 +33,7 @@ def text_draw(font_name, font_size, img, text, width, hight, fill="white"):
 
 
 @catub.cat_cmd(
-    pattern="app ([\s\S]*)",
+    pattern="تطبيق ([\s\S]*)",
     command=("app", plugin_category),
     info={
         "header": "To search any app in playstore",
@@ -47,9 +47,9 @@ async def app_search(event):
     reply_to_id = await reply_id(event)
     if not query:
         return await edit_delete(
-            event, "`Enter an app name to get result from PlayStore..`"
+            event, "`ضع اسم التطبيق لكي يتم بحث عنه..`"
         )
-    await edit_or_reply(event, "`Searching!...`")
+    await edit_or_reply(event, "`جار بحث!...`")
     try:
         final_name = query.replace(" ", "+")
         page = requests.get(
@@ -110,9 +110,9 @@ async def app_search(event):
     thumbmask.save(pic_name)
     os.remove(logo)
     app_details = f" <b>{fullapp_name}</b>"
-    app_details += f"\n\n<b>Developer :</b> <a href= {dev_link}>{dev_name}</a>"
-    app_details += f"\n<b>Rating :</b> <code>{rating} ⭐ </code>"
-    app_details += f"\n\n<b>Features :</b> <a href= {app_link}>View in Play Store</a>"
+    app_details += f"\n\n<b>المطور :</b> <a href= {dev_link}>{dev_name}</a>"
+    app_details += f"\n<b>التقييم :</b> <code>{rating} ⭐ </code>"
+    app_details += f"\n\n<b>المميزات :</b> <a href= {app_link}>مشاهداته في بلاي ستور</a>"
     await event.delete()
     await event.client.send_file(
         event.chat_id,
