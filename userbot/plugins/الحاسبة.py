@@ -8,7 +8,7 @@ plugin_category = "utils"
 
 
 @catub.cat_cmd(
-    pattern="calc ([\s\S]*)",
+    pattern="الحاسبة ([\s\S]*)",
     command=("calc", plugin_category),
     info={
         "header": "To solve basic mathematics equations.",
@@ -17,9 +17,9 @@ plugin_category = "utils"
     },
 )
 async def calculator(event):
-    "To solve basic mathematics equations."
+    "لحل معادلات الرياضيات الأساسية."
     cmd = event.text.split(" ", maxsplit=1)[1]
-    event = await edit_or_reply(event, "Calculating ...")
+    event = await edit_or_reply(event, "⌯︙جاري الحساب ...")
     old_stderr = sys.stderr
     old_stdout = sys.stdout
     redirected_output = sys.stdout = io.StringIO()
@@ -42,8 +42,8 @@ async def calculator(event):
     elif stdout:
         evaluation = stdout
     else:
-        evaluation = "Sorry I can't find result for the given equation"
-    final_output = "**EQUATION**: `{}` \n\n **SOLUTION**: \n`{}` \n".format(
+        evaluation = "آسف ، لا يمكنني العثور على نتيجة للمعادلة المحددة"
+    final_output = "**معادلة**: `{}` \n\n **المحلول**: \n`{}` \n".format(
         cmd, evaluation
     )
     await event.edit(final_output)
