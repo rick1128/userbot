@@ -57,7 +57,7 @@ async def scam(results, lim):
 
 
 @catub.cat_cmd(
-    pattern="gs ([\s\S]*)",
+    pattern="ابحث كوكل ([\s\S]*)",
     command=("gs", plugin_category),
     info={
         "header": "Google search command.",
@@ -78,7 +78,7 @@ async def scam(results, lim):
     },
 )
 async def gsearch(q_event):
-    "Google search command."
+    "أمر بحث جوجل."
     catevent = await edit_or_reply(q_event, "`searching........`")
     match = q_event.pattern_match.group(1)
     page = re.findall(r"-p\d+", match)
@@ -127,20 +127,20 @@ async def gsearch(q_event):
             break
     await edit_or_reply(
         catevent,
-        "**Search Query:**\n`" + match + "`\n\n**Results:**\n" + msg,
+        "**استعلام بحث:**\n`" + match + "`\n\n**السبب:**\n" + msg,
         link_preview=False,
         aslink=True,
-        linktext=f"**The search results for the query **__{match}__ **are** :",
+        linktext=f"**نتائج البحث عن الاستعلام **__{match}__ **نكون** :",
     )
     if BOTLOG:
         await q_event.client.send_message(
             BOTLOG_CHATID,
-            f"Google Search query `{match}` was executed successfully",
+            f"استعلام بحث Google `{match}` تم تنفيذه بنجاح ♥️🧸",
         )
 
 
 @catub.cat_cmd(
-    pattern="gis ([\s\S]*)",
+    pattern="صورة من كوكل ([\s\S]*)",
     command=("gis", plugin_category),
     info={
         "header": "Google search in image format",
@@ -149,11 +149,11 @@ async def gsearch(q_event):
     },
 )
 async def gis(event):
-    "To search in google and send result in picture."
+    "للبحث في جوجل وإرسال النتيجة في الصورة 🧸♥️."
 
 
 @catub.cat_cmd(
-    pattern="grs$",
+    pattern="بحث كوكل$",
     command=("grs", plugin_category),
     info={
         "header": "Google reverse search command.",
@@ -164,7 +164,7 @@ async def gis(event):
 async def grs(event):
     "Google Reverse Search"
     start = datetime.now()
-    OUTPUT_STR = "Reply to an image to do Google Reverse Search"
+    OUTPUT_STR = "قم بالرد على صورة لإجراء بحث كوكل العكسي 🧸♥️"
     if event.reply_to_msg_id:
         catevent = await edit_or_reply(event, "Pre Processing Media")
         previous_message = await event.get_reply_message()
@@ -224,8 +224,8 @@ async def grs(event):
         ms = (end - start).seconds
         OUTPUT_STR = """{img_size}
 <b>Possible Related Search : </b> <a href="{prs_url}">{prs_text}</a> 
-<b>More Info : </b> Open this <a href="{the_location}">Link</a> 
-<i>fetched in {ms} seconds</i>""".format(
+<b>More Info : </b> افتح هذا <a href="{the_location}">Link</a> 
+<i>fetched in {ms} الثواني</i>""".format(
             **locals()
         )
     else:
@@ -234,7 +234,7 @@ async def grs(event):
 
 
 @catub.cat_cmd(
-    pattern="reverse(?:\s|$)([\s\S]*)",
+    pattern="يعكس(?:\s|$)([\s\S]*)",
     command=("reverse", plugin_category),
     info={
         "header": "Google reverse search command.",
@@ -307,7 +307,7 @@ async def reverse(event):
 
 
 @catub.cat_cmd(
-    pattern="google(?:\s|$)([\s\S]*)",
+    pattern="كوكل(?:\s|$)([\s\S]*)",
     command=("google", plugin_category),
     info={
         "header": "To get link for google search",
@@ -318,7 +318,7 @@ async def reverse(event):
     },
 )
 async def google_search(event):
-    "Will show you google search link of the given query."
+    "سيظهر لك رابط بحث كوكل للاستعلام المحدد."
     input_str = event.pattern_match.group(1)
     reply_to_id = await reply_id(event)
     if not input_str:
