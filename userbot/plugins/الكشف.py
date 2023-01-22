@@ -104,11 +104,11 @@ async def _(event):
         dc_id = "Can't get dc id"
     if spamwatch:
         if ban := spamwatch.get_ban(user_id):
-            sw = f"**Spamwatch Banned :** `True` \n       **-**🤷‍♂️**Reason : **`{ban.reason}`"
+            sw = f"**محظور من رسائل الغير لائقه :** `True` \n       **-**🤷‍♂️**Reason : **`{ban.reason}`"
         else:
-            sw = "**Spamwatch Banned :** `False`"
+            sw = "**محظور من رسائل الغير لائقه :** `False`"
     else:
-        sw = "**Spamwatch Banned :**`Not Connected`"
+        sw = "**محظور من رسائل الغير لائقة :**`Not Connected`"
     try:
         casurl = f"https://api.cas.chat/check?user_id={user_id}"
         data = get(casurl).json()
@@ -117,9 +117,9 @@ async def _(event):
         data = None
     if data:
         if data["ok"]:
-            cas = "**Antispam(CAS) Banned :** `True`"
+            cas = "**متبند من السبام(CAS)  :** `True`"
         else:
-            cas = "**Antispam(CAS) Banned :** `False`"
+            cas = "**متبند من السبام(CAS)  :** `False`"
     else:
         cas = "**Antispam(CAS) Banned :** `Couldn't Fetch`"
     caption = """**Info of [{}](tg://user?id={}):
