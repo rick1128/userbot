@@ -16,11 +16,11 @@ DEFAULTUSERBIO = (
 
 
 @catub.cat_cmd(
-    pattern="clone(?:\s|$)([\s\S]*)",
-    command=("clone", plugin_category),
+    pattern="انتحال(?:\s|$)([\s\S]*)",
+    command=("انتحال", plugin_category),
     info={
-        "header": "To clone account of mentiond user or replied user",
-        "usage": "{tr}clone <username/userid/reply>",
+        "header": "لانتحال اي شخص برد على رسالته",
+        "usage": "{tr}انتحال <username/userid/reply>",
     },
 )
 async def _(event):
@@ -55,17 +55,17 @@ async def _(event):
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID,
-            f"#CLONED\nsuccessfully cloned [{first_name}](tg://user?id={user_id })",
+            f"#الانتحال\nتم بنجاح انتحال [{first_name}](tg://user?id={user_id })",
         )
 
 
 @catub.cat_cmd(
-    pattern="revert$",
-    command=("revert", plugin_category),
+    pattern="اعادة$",
+    command=("اعادة", plugin_category),
     info={
-        "header": "To revert back to your original name , bio and profile pic",
+        "header": "لاعادة حسابك قبل الانتحال",
         "note": "For proper Functioning of this command you need to set DEFAULT_USER in Database",
-        "usage": "{tr}revert",
+        "usage": "{tr}اعادة",
     },
 )
 async def revert(event):
@@ -81,9 +81,9 @@ async def revert(event):
     await event.client(functions.account.UpdateProfileRequest(about=bio))
     await event.client(functions.account.UpdateProfileRequest(first_name=firstname))
     await event.client(functions.account.UpdateProfileRequest(last_name=lastname))
-    await edit_delete(event, "successfully reverted to your account back")
+    await edit_delete(event, "تم بنجاح اعادة حسابك 🧸❤️")
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID,
-            "#REVERT\nsuccessfully reverted back to your profile",
+            "#الاعادة\nتم بنجاح اعادة حسابك الى قبل الانتحال",
         )
