@@ -257,7 +257,7 @@ async def upstream(event):
     # Special case for deploy
     if changelog == "" and not force_update:
         await event.edit(
-            "\n`ريك ثون`  **محدث**  `مع`  "
+            "\n`ريك ثون`  **محدث اخر اصدار**  `البرانش`  "
             f"**{UPSTREAM_REPO_BRANCH}**\n"
         )
         return repo.__del__()
