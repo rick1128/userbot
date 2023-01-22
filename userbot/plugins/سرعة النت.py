@@ -1,6 +1,7 @@
 """Check your internet speed powered by speedtest.net
 Syntax: .speedtest
 Available Options: image, file, text"""
+#لاتخمط ابنل مطي
 
 from time import time
 
@@ -25,10 +26,10 @@ def convert_from_bytes(size):
 
 
 @catub.cat_cmd(
-    pattern="speedtest(?:\s|$)([\s\S]*)",
-    command=("speedtest", plugin_category),
+    pattern="سرعة النت(?:\s|$)([\s\S]*)",
+    command=("سرعة النت", plugin_category),
     info={
-        "header": "Botserver's speedtest by ookla.",
+        "header": "الفحص بموقع اوكلا.",
         "options": {
             "text": "will give output as text",
             "image": (
@@ -76,11 +77,11 @@ async def _(event):
             await catevent.edit(
                 """`SpeedTest completed in {} seconds`
 
-`Download: {} (or) {} MB/s`
-`Upload: {} (or) {} MB/s`
-`Ping: {} ms`
-`Internet Service Provider: {}`
-`ISP Rating: {}`""".format(
+`التحميل: {} (or) {} MB/s`
+`التنزيل: {} (or) {} MB/s`
+`البنك: {} ms`
+`مزود الإنترنت : {}`
+`تقييمات مزود خدمة الإنترنت : {}`""".format(
                     ms,
                     convert_from_bytes(download_speed),
                     round(download_speed / 8e6, 2),
