@@ -63,7 +63,7 @@ async def set_not_afk(event):
     ):
         shite = await event.client.send_message(
             event.chat_id,
-            "`Back alive! No Longer afk.\nWas afk for " + endtime + "`",
+            "`لقد عدت من.\nWas السليب 😴 " + endtime + "`",
         )
         AFK_.USERAFK_ON = {}
         AFK_.afk_time = None
@@ -74,7 +74,7 @@ async def set_not_afk(event):
             await event.client.send_message(
                 BOTLOG_CHATID,
                 "#AFKFALSE \n`Set AFK mode to False\n"
-                + "Back alive! No Longer afk.\nWas afk for "
+                + "لقد عدت من.\nالسليب 😴 "
                 + endtime
                 + "`",
             )
@@ -116,23 +116,23 @@ async def on_afk(event):  # sourcery no-metrics
         if AFK_.afk_type == "media":
             if AFK_.reason:
                 message_to_reply = (
-                    f"`I am AFK .\n\nAFK Since {endtime}\nReason : {AFK_.reason}`"
+                    f"`أنا نائم او مشغول  .\n\nمنذ {endtime}\nالسبب : {AFK_.reason}`"
                 )
             else:
-                message_to_reply = f"`I am AFK .\n\nAFK Since {endtime}\nReason : Not Mentioned ( ಠ ʖ̯ ಠ)`"
+                message_to_reply = f"`انا نائم او مشغول .\n\nمنذ {endtime}\nالسبب : غير مذكور ( ಠ ʖ̯ ಠ)`"
             if event.chat_id:
                 msg = await event.reply(message_to_reply, file=AFK_.media_afk.media)
         elif AFK_.afk_type == "text":
             if AFK_.msg_link and AFK_.reason:
                 message_to_reply = (
-                    f"**I am AFK .\n\nAFK Since {endtime}\nReason : **{AFK_.reason}"
+                    f"**أنا نائم او مشغول .\n\nمنذ {endtime}\nالسبب : **{AFK_.reason}"
                 )
             elif AFK_.reason:
                 message_to_reply = (
-                    f"`I am AFK .\n\nAFK Since {endtime}\nReason : {AFK_.reason}`"
+                    f"`أنا نائم او مشغول .\n\nمنذ {endtime}\nالسبب : {AFK_.reason}`"
                 )
             else:
-                message_to_reply = f"`I am AFK .\n\nAFK Since {endtime}\nReason : Not Mentioned ( ಠ ʖ̯ ಠ)`"
+                message_to_reply = f"`انا نائم او مشغول .\n\nAFK Since {endtime}\nالسبب : غير مذكور ( ಠ ʖ̯ ಠ)`"
             if event.chat_id:
                 msg = await event.reply(message_to_reply)
         if event.chat_id in AFK_.last_afk_message:
@@ -149,14 +149,14 @@ async def on_afk(event):  # sourcery no-metrics
         except Exception as e:
             LOGS.info(str(e))
         messaget = await media_type(event)
-        resalt = f"#AFK_TAGS \n<b>Group : </b><code>{hmm.title}</code>"
+        resalt = f"#AFK_TAGS \n<b>كروب : </b><code>{hmm.title}</code>"
         if full is not None:
-            resalt += f"\n<b>From : </b> 👤{_format.htmlmentionuser(full.first_name , full.id)}"
+            resalt += f"\n<b>من : </b> 👤{_format.htmlmentionuser(full.first_name , full.id)}"
         if messaget is not None:
-            resalt += f"\n<b>Message type : </b><code>{messaget}</code>"
+            resalt += f"\n<b>نوع الرسالة : </b><code>{messaget}</code>"
         else:
-            resalt += f"\n<b>Message : </b>{event.message.message}"
-        resalt += f"\n<b>Message link: </b><a href = 'https://t.me/c/{hmm.id}/{event.message.id}'> link</a>"
+            resalt += f"\n<b>الرسالة : </b>{event.message.message}"
+        resalt += f"\n<b>رابط الرسالة: </b><a href = 'https://t.me/c/{hmm.id}/{event.message.id}'> link</a>"
         if not event.is_private:
             await event.client.send_message(
                 Config.PM_LOGGER_GROUP_ID,
@@ -167,7 +167,7 @@ async def on_afk(event):  # sourcery no-metrics
 
 
 @catub.cat_cmd(
-    pattern="afk(?:\s|$)([\s\S]*)",
+    pattern="سليب(?:\s|$)([\s\S]*)",
     command=("afk", plugin_category),
     info={
         "header": "Enables afk for your account",
@@ -183,7 +183,7 @@ async def on_afk(event):  # sourcery no-metrics
     },
 )
 async def _(event):
-    "To mark yourself as afk i.e. Away from keyboard"
+    "لوضع علامة على نفسك على أنك سليب ، أي بعيدا عن لوحة المفاتيح"
     AFK_.USERAFK_ON = {}
     AFK_.afk_time = None
     AFK_.last_afk_message = {}
@@ -247,11 +247,11 @@ async def _(event):
     media_t = await media_type(reply)
     if media_t == "Sticker" or not media_t:
         return await edit_or_reply(
-            event, "`You haven't replied to any media to activate media afk`"
+            event, "`لم تقم بالرد على أي وسائط لتنشيط التركيز البؤري التلقائي للوسائط`"
         )
     if not BOTLOG:
         return await edit_or_reply(
-            event, "`To use media afk you need to set PRIVATE_GROUP_BOT_API_ID config`"
+            event, "`اذا كنت تريد وضع ميديا مع السليب فعليك وضع الفارات PRIVATE_GROUP_BOT_API_ID config`"
         )
     AFK_.USERAFK_ON = {}
     AFK_.afk_time = None
@@ -273,18 +273,18 @@ async def _(event):
         AFK_.USERAFK_ON = f"on: {AFK_.reason}"
         if AFK_.reason:
             await edit_delete(
-                event, f"`I shall be Going afk! because ~` {AFK_.reason}", 5
+                event, f"سأكون ذاهبا للسليب! لأن` ~` {AFK_.reason}", 5
             )
         else:
-            await edit_delete(event, "`I shall be Going afk! `", 5)
+            await edit_delete(event, "`سأكون ذاهبا للسليب!`", 5)
         AFK_.media_afk = await reply.forward_to(BOTLOG_CHATID)
         if AFK_.reason:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                f"#AFKTRUE \nSet AFK mode to True, and Reason is {AFK_.reason}",
+                f"#AFKTRUE \nاضبط وضع السليب على صواب، والسبب هو {AFK_.reason}",
             )
         else:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                "#AFKTRUE \nSet AFK mode to True, and Reason is Not Mentioned",
+                "#AFKTRUE \nاضبط وضع السليب على صواب والسبب هو",
             )
