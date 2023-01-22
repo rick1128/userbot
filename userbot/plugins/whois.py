@@ -55,24 +55,24 @@ async def fetch_info(replied_user, event):
     username = f"@{username}" if username else "This User has no Username"
     user_bio = user_bio or "This User has no About"
     caption = "<b><i>USER INFO from Durov's Database :</i></b>\n\n"
-    caption += f"<b>👤 Name:</b> {full_name}\n"
-    caption += f"<b>🤵 Username:</b> {username}\n"
-    caption += f"<b>🔖 ID:</b> <code>{user_id}</code>\n"
-    caption += f"<b>🌏 Data Centre ID:</b> {dc_id}\n"
-    caption += f"<b>🖼 Number of Profile Pics:</b> {replied_user_profile_photos_count}\n"
-    caption += f"<b>⭐️ Is Premium:</b> {is_premium}\n"
-    caption += f"<b>🤖 Is Bot:</b> {is_bot}\n"
-    caption += f"<b>🔏 Is Restricted:</b> {restricted}\n"
-    caption += f"<b>🌐 Is Verified by Telegram:</b> {verified}\n\n"
-    caption += f"<b>✍️ Bio:</b> \n<code>{user_bio}</code>\n\n"
-    caption += f"<b>👥 Common Chats with this user:</b> {common_chat}\n"
-    caption += "<b>🔗 Permanent Link To Profile:</b> "
+    caption += f"<b>👤 اسمه:</b> {full_name}\n"
+    caption += f"<b>🤵 معرفه:</b> {username}\n"
+    caption += f"<b>🔖 ايديه:</b> <code>{user_id}</code>\n"
+    caption += f"<b>🌏 قاعده البيانات:</b> {dc_id}\n"
+    caption += f"<b>🖼 عدد صوره:</b> {replied_user_profile_photos_count}\n"
+    caption += f"<b>⭐️ هل الحساب مفعل تلي مميز:</b> {is_premium}\n"
+    caption += f"<b>🤖 هل هو بوت:</b> {is_bot}\n"
+    caption += f"<b>🔏 هل هو مقيد:</b> {restricted}\n"
+    caption += f"<b>🌐 هل هو موثق:</b> {verified}\n\n"
+    caption += f"<b>✍️ بايو:</b> \n<code>{user_bio}</code>\n\n"
+    caption += f"<b>👥 دردشات شائعة مع هذا المستخدم:</b> {common_chat}\n"
+    caption += "<b>🔗 رابط حسابه:</b> "
     caption += f'<a href="tg://user?id={user_id}">{first_name}</a>'
     return photo, caption
 
 
 @catub.cat_cmd(
-    pattern="userinfo(?:\s|$)([\s\S]*)",
+    pattern="كشف(?:\s|$)([\s\S]*)",
     command=("userinfo", plugin_category),
     info={
         "header": "Gets information of an user such as restrictions ban by spamwatch or cas.",
@@ -85,7 +85,7 @@ async def _(event):
     replied_user, reason = await get_user_from_event(event)
     if not replied_user:
         return
-    catevent = await edit_or_reply(event, "`Fetching userinfo wait....`")
+    catevent = await edit_or_reply(event, "`انتضر....`")
     FullUser = (await event.client(GetFullUserRequest(replied_user.id))).full_user
     user_id = replied_user.id
     # some people have weird HTML in their names
@@ -124,9 +124,9 @@ async def _(event):
         cas = "**Antispam(CAS) Banned :** `Couldn't Fetch`"
     caption = """**Info of [{}](tg://user?id={}):
    -🔖ID : **`{}`
-   **-**👥**Groups in Common : **`{}`
-   **-**🌏**Data Centre Number : **`{}`
-   **-**🔏**Restricted by telegram : **`{}`
+   **-**👥**مجموعات المشتركة : **`{}`
+   **-**🌏**رقم مركز البيانات : **`{}`
+   **-**🔏**مقيد بالتليجرام : **`{}`
    **-**🦅{}
    **-**👮‍♂️{}
 """.format(
@@ -143,7 +143,7 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="whois(?:\s|$)([\s\S]*)",
+    pattern="معلوماته(?:\s|$)([\s\S]*)",
     command=("whois", plugin_category),
     info={
         "header": "Gets info of an user.",
@@ -158,7 +158,7 @@ async def who(event):
     replied_user, reason = await get_user_from_event(event)
     if not replied_user:
         return
-    cat = await edit_or_reply(event, "`Fetching userinfo wait....`")
+    cat = await edit_or_reply(event, "`انتضر....`")
     try:
         photo, caption = await fetch_info(replied_user, event)
     except (AttributeError, TypeError):
@@ -182,7 +182,7 @@ async def who(event):
 
 
 @catub.cat_cmd(
-    pattern="link(?:\s|$)([\s\S]*)",
+    pattern="الرابط(?:\s|$)([\s\S]*)",
     command=("link", plugin_category),
     info={
         "header": "Generates a link to the user's PM .",
