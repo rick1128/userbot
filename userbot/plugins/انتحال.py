@@ -1,4 +1,4 @@
-# Credits of Plugin @ViperAdnan and @mrconfused(revert)[will add sql soon]
+# Credits of Plugin @S_Z_H
 import html
 
 from telethon.tl import functions
@@ -49,9 +49,9 @@ async def _(event):
     try:
         pfile = await event.client.upload_file(profile_pic)
     except Exception as e:
-        return await edit_delete(event, f"**Failed to clone due to error:**\n__{e}__")
+        return await edit_delete(event, f"**خطاء في الانتحال !!:**\n__{e}__")
     await event.client(functions.photos.UploadProfilePhotoRequest(pfile))
-    await edit_delete(event, "**LET US BE AS ONE**")
+    await edit_delete(event, "**تم الانتحال بنجاح 🧸❤️**")
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID,
