@@ -67,7 +67,7 @@ async def autopicloop():
         if BOTLOG:
             return await catub.send_message(
                 BOTLOG_CHATID,
-                "**Error**\n`For functing of autopic you need to set DEFAULT_PIC var in Database vars`",
+                "**خطأ**\n`لوظيفة التأتبي تحتاج إلى ضبط DEFAULT_PIC var in Database vars`",
             )
         return
     if gvarstatus("autopic") is not None:
@@ -278,7 +278,7 @@ async def autopfp_start():
 
 
 @catub.cat_cmd(
-    pattern="batmanpfp$",
+    pattern="باتمان pfp$",
     command=("batmanpfp", plugin_category),
     info={
         "header": "Changes profile pic with random batman pics every 1 minute",
@@ -299,7 +299,7 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="thorpfp$",
+    pattern="ثوربف$",
     command=("thorpfp", plugin_category),
     info={
         "header": "Changes profile pic with random thor pics every 1 minute",
@@ -320,7 +320,7 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="autopic ?([\s\S]*)",
+    pattern="صورة تلقائية ?([\s\S]*)",
     command=("autopic", plugin_category),
     info={
         "header": "Changes profile pic every 1 minute with the custom pic with time",
@@ -341,7 +341,7 @@ async def _(event):
     if DEFAULT_PIC is None:
         return await edit_delete(
             event,
-            "**Error**\nFor functing of autopic you need to set DEFAULT_PIC var in Database vars",
+            "**خطأ**\n لوظيفة التأتبي تحتاج إلى ضبط DEFAULT_PIC var in Database vars",
             parse_mode=_format.parse_pre,
         )
     downloader = SmartDL(DEFAULT_PIC, autopic_path, progress_bar=False)
@@ -366,7 +366,7 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="digitalpfp$",
+    pattern="صورة رقمية$",
     command=("digitalpfp", plugin_category),
     info={
         "header": "Updates your profile pic every 1 minute with time on it",
@@ -390,7 +390,7 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="bloom$",
+    pattern="إزهار$",
     command=("bloom", plugin_category),
     info={
         "header": "Changes profile pic every 1 minute with the random colour pic with time on it",
@@ -406,7 +406,7 @@ async def _(event):
     if DEFAULT_PIC is None:
         return await edit_delete(
             event,
-            "**Error**\nFor functing of bloom you need to set DEFAULT_PIC var in Database vars",
+            "**خطأ**\n من أجل وظيفة الإزهار ، تحتاج إلى ضبط DEFAULT_PIC بقاعدة البيانات",
             parse_mode=_format.parse_pre,
         )
     downloader = SmartDL(DEFAULT_PIC, autopic_path, progress_bar=True)
@@ -460,7 +460,7 @@ async def useless(event):  # sourcery no-metrics
     if flag == "l":
         if not list_link:
             return await edit_delete(
-                event, "**ಠ∀ಠ  There no links set for custom pfp...**"
+                event, "**ಠ∀ಠ  لا توجد روابط معيّنة لـ pfp المخصص...**"
             )
         links = "**Available links for custom pfp are here:-**\n\n"
         for i, each in enumerate(list_link, start=1):
