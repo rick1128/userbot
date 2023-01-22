@@ -33,15 +33,15 @@ def resize_image(image):
 
 
 @catub.cat_cmd(
-    pattern="(t(ele)?g(raph)?) ?(m|t|media|text)(?:\s|$)([\s\S]*)",
+    pattern="(تلكراف) ?(ميديا|تكست)(?:\s|$)([\s\S]*)",
     command=("telegraph", plugin_category),
     info={
         "header": "To get telegraph link.",
-        "description": "Reply to text message to paste that text on telegraph you can also pass input along with command \
+        "description": "رد على رساله ليتم رفعه الى تلكراف \
             So that to customize title of that telegraph and reply to media file to get sharable link of that media(atmost 5mb is supported)",
         "options": {
-            "m or media": "To get telegraph link of replied sticker/image/video/gif.",
-            "t or text": "To get telegraph link of replied text you can use custom title.",
+            "ميديا": "To get telegraph link of replied sticker/image/video/gif.",
+            "تكست": "To get telegraph link of replied text you can use custom title.",
         },
         "usage": [
             "{tr}tgm",
@@ -53,43 +53,43 @@ def resize_image(image):
 )  # sourcery no-me  # sourcery skip: low-code-quality, low-code-qualitytrics
 async def _(event):
     "To get telegraph link."
-    catevent = await edit_or_reply(event, "`processing........`")
+    catevent = await edit_or_reply(event, "`يتم الرفع........`")
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID,
-            f"Created New Telegraph account {auth_url} for the current session. \n**Do not give this url to anyone, even if they say they are from Telegram!**",
+            f"تم انشاء جلسه تلجراف جديده {auth_url} لهذا الجلسة. \n**لا تشارك الرابط لاي احد خطير!**",
         )
     optional_title = event.pattern_match.group(5)
     if not event.reply_to_msg_id:
         return await catevent.edit(
-            "`Reply to a message to get a permanent telegra.ph link.`",
+            "`رد على رسالة ليتم رفعه.`",
         )
 
     start = datetime.now()
     r_message = await event.get_reply_message()
     input_str = (event.pattern_match.group(4)).strip()
-    if input_str in ["media", "m"]:
+    if input_str in ["ميديا"]:
         downloaded_file_name = await event.client.download_media(
             r_message, Config.TEMP_DIR
         )
-        await catevent.edit(f"`Downloaded to {downloaded_file_name}`")
+        await catevent.edit(f"`تم تحميل الى {downloaded_file_name}`")
         if downloaded_file_name.endswith((".webp")):
             resize_image(downloaded_file_name)
         try:
             media_urls = upload_file(downloaded_file_name)
         except exceptions.TelegraphException as exc:
-            await catevent.edit(f"**Error : **\n`{exc}`")
+            await catevent.edit(f"**خطاء : **\n`{exc}`")
             os.remove(downloaded_file_name)
         else:
             end = datetime.now()
             ms = (end - start).seconds
             os.remove(downloaded_file_name)
             await catevent.edit(
-                f"**link : **[telegraph](https://graph.org{media_urls[0]})\
+                f"**الرابط : **[اضغط هنا](https://graph.org{media_urls[0]})\
                     \n**Time Taken : **`{ms} seconds.`",
                 link_preview=True,
             )
-    elif input_str in ["text", "t"]:
+    elif input_str in ["تكست"]:
         user_object = await event.client.get_entity(r_message.sender_id)
         title_of_page = get_display_name(user_object)
         # apparently, all Users do not have last_name field
@@ -122,7 +122,7 @@ async def _(event):
         ms = (end - start).seconds
         cat = f"https://graph.org/{response['path']}"
         await catevent.edit(
-            f"**link : ** [telegraph]({cat})\
+            f"**الرابط : ** [اضغط هنا]({cat})\
                  \n**Time Taken : **`{ms} seconds.`",
             link_preview=True,
         )
