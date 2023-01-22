@@ -27,8 +27,8 @@ if Config.BADCAT:
 
 
 @catub.cat_cmd(
-    pattern="ping( -a|$)",
-    command=("ping", plugin_category),
+    pattern="البنك( -a|$)",
+    command=("البنك", plugin_category),
     info={
         "header": "check how long it takes to ping your userbot",
         "flags": {"-a": "average ping"},
@@ -50,7 +50,7 @@ async def _(event):
         end = datetime.now()
         tms = (end - start).microseconds / 1000
         ms = round((tms - 0.6) / 3, 3)
-        await edit_or_reply(catevent, f"Average Ping!\n`{ms} ms`")
+        await edit_or_reply(catevent, f"متوسط السرعة!\n`{ms} ms`")
     else:
         catevent = await edit_or_reply(event, temp_)
         end = datetime.now()
