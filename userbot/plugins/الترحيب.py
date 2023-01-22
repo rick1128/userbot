@@ -86,7 +86,7 @@ async def _(event):  # sourcery no-metrics  # sourcery skip: low-code-quality
 
 
 @catub.cat_cmd(
-    pattern="savewelcome(?:\s|$)([\s\S]*)",
+    pattern="وضع ترحيب(?:\s|$)([\s\S]*)",
     command=("savewelcome", plugin_category),
     info={
         "header": "To welcome new users in chat.",
@@ -122,9 +122,9 @@ async def save_welcome(event):
         if BOTLOG_CHATID:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                f"#WELCOME_NOTE\
-                \nCHAT ID: {event.chat_id}\
-                \nThe following message is saved as the welcome note for the {get_display_name(await event.get_chat())}, Don't delete this message !!",
+                f"#ملاحظة التعريب\
+                \nايدي الكروب :{event.chat_id}\
+                \n يتم حفظ الرسالة التالية كملاحظة ترحيب لـ {get_display_name(await event.get_chat())}, Don't delete this message !!",
             )
             msg_o = await event.client.forward_messages(
                 entity=BOTLOG_CHATID, messages=msg, from_peer=event.chat_id, silent=True
@@ -133,22 +133,22 @@ async def save_welcome(event):
         else:
             return await edit_or_reply(
                 event,
-                "`Saving media as part of the welcome note requires the BOTLOG_CHATID to be set.`",
+                "`يتطلب حفظ الوسائط كجزء من ملاحظة الترحيب تعيين BOTLOG_CHATID 🙄🧸.`",
             )
     elif event.reply_to_msg_id and not string:
         rep_msg = await event.get_reply_message()
         string = rep_msg.text
-    success = "`Welcome note {} for this chat.`"
+    success = "`ترحيب، {} لهذه الدردشة.`"
     if add_welcome_setting(event.chat_id, 0, string, msg_id) is True:
         return await edit_or_reply(event, success.format("saved"))
     rm_welcome_setting(event.chat_id)
     if add_welcome_setting(event.chat_id, 0, string, msg_id) is True:
         return await edit_or_reply(event, success.format("updated"))
-    await edit_or_reply("Error while setting welcome in this group")
+    await edit_or_reply("خطأ أثناء تعيين الترحيب في هذه المجموعة ♥ ️🧸")
 
 
 @catub.cat_cmd(
-    pattern="clearwelcome$",
+    pattern="مسح ترحيب$",
     command=("clearwelcome", plugin_category),
     info={
         "header": "To turn off welcome message in group.",
@@ -159,13 +159,13 @@ async def save_welcome(event):
 async def del_welcome(event):
     "To turn off welcome message"
     if rm_welcome_setting(event.chat_id) is True:
-        await edit_or_reply(event, "`Welcome note deleted for this chat.`")
+        await edit_or_reply(event, "`تم حذف ملاحظة الترحيب لهذه الدردشة. 🧸♥️`")
     else:
-        await edit_or_reply(event, "`Do I have a welcome note here ?`")
+        await edit_or_reply(event, "`هل لدي ملاحظة ترحيب هنا ؟`")
 
 
 @catub.cat_cmd(
-    pattern="listwelcome$",
+    pattern="قائمة الترحيبات$",
     command=("listwelcome", plugin_category),
     info={
         "header": "To check current welcome message in group.",
@@ -176,24 +176,24 @@ async def show_welcome(event):
     "To show current welcome message in group"
     cws = get_current_welcome_settings(event.chat_id)
     if not cws:
-        return await edit_or_reply(event, "`No welcome message saved here.`")
+        return await edit_or_reply(event, "`لا يوجد ترحيبات هنا 🧸♥️.`")
     if cws.f_mesg_id:
         msg_o = await event.client.get_messages(
             entity=BOTLOG_CHATID, ids=int(cws.f_mesg_id)
         )
         await edit_or_reply(
-            event, "`I am currently welcoming new users with this welcome note.`"
+            event, "`أرحب حاليًا بالمستخدمين الجدد بهذه الملاحظة الترحيبية ♥️🧸.`"
         )
         await event.reply(msg_o.message, file=msg_o.media)
     elif cws.reply:
         await edit_or_reply(
-            event, "`I am currently welcoming new users with this welcome note.`"
+            event, "`أرحب حاليًا بالمستخدمين الجدد بهذه الملاحظة الترحيبية.`"
         )
         await event.reply(cws.reply, link_preview=False)
 
 
 @catub.cat_cmd(
-    pattern="cleanwelcome (on|off)$",
+    pattern="تنظيف الترحيب (تشغيل|تعطيل)$",
     command=("cleanwelcome", plugin_category),
     info={
         "header": "To turn off or turn on of deleting previous welcome message.",
@@ -218,3 +218,4 @@ async def del_welcome(event):
             event, "__From now on previous welcome message will not be deleted .__"
         )
     await edit_delete(event, "It was turned off already")
+#حمد_مصطفى (محمد)
