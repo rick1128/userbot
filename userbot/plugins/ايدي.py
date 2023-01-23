@@ -11,7 +11,7 @@ LOGS = logging.getLogger(__name__)
 
 
 @catub.cat_cmd(
-    pattern="(get_id|id)(?:\s|$)([\s\S]*)",
+    pattern="(ايدي|الايدي)(?:\s|$)([\s\S]*)",
     command=("id", plugin_category),
     info={
         "header": "To get id of the group or user.",
@@ -21,7 +21,7 @@ LOGS = logging.getLogger(__name__)
     },
 )
 async def _(event):
-    "To get id of the group or user."
+    "للحصول على ايدي المجموعة أو المستخدم."
     if input_str := event.pattern_match.group(2):
         try:
             p = await event.client.get_entity(input_str)
@@ -30,31 +30,31 @@ async def _(event):
         try:
             if p.first_name:
                 return await edit_or_reply(
-                    event, f"The id of the user `{input_str}` is `{p.id}`"
+                    event, f"ايدي المستخدم ♥️🧸 `{input_str}` هذا `{p.id}`"
                 )
         except Exception:
             try:
                 if p.title:
                     return await edit_or_reply(
-                        event, f"The id of the chat/channel `{p.title}` is `{p.id}`"
+                        event, f"ايدي الدردشة / القناة `{p.title}` هذا `{p.id}`"
                     )
             except Exception as e:
                 LOGS.info(str(e))
-        await edit_or_reply(event, "`Either give input as username or reply to user`")
+        await edit_or_reply(event, "`إما أن تعطي مدخلات كاسم مستخدم أو ترد على المستخدم ♥️🧸`")
     elif event.reply_to_msg_id:
         r_msg = await event.get_reply_message()
         if r_msg.media:
             bot_api_file_id = pack_bot_file_id(r_msg.media)
             await edit_or_reply(
                 event,
-                f"**Current Chat ID : **`{event.chat_id}`\n**From User ID: **`{r_msg.sender_id}`\n**Media File ID: **`{bot_api_file_id}`",
+                f"**ايدي الدردشة الحالي : **`{event.chat_id}`\n**من ايدي المستخدم ♥️🧸: **`{r_msg.sender_id}`\n**ايدي ملف الوسائط: **`{bot_api_file_id}`",
             )
 
         else:
             await edit_or_reply(
                 event,
-                f"**Current Chat ID : **`{event.chat_id}`\n**From User ID: **`{r_msg.sender_id}`",
+                f"**ايدي الدردشة الحالي ♥️🧸 : **`{event.chat_id}`\n**من ايدي المستخدم ♥️🧸: **`{r_msg.sender_id}`",
             )
 
     else:
-        await edit_or_reply(event, f"**Current Chat ID : **`{event.chat_id}`")
+        await edit_or_reply(event, f"**ايدي الدردشة الحالي ♥️🧸 : **`{event.chat_id}`")
