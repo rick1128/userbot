@@ -218,10 +218,9 @@ async def verifyLoggerGroup():
                 + str(e)
             )
     else:
-        PHOTO "https://telegra.ph/file/7a15378b69199ca46c072.jpg"
         descript = "✤ : مجموعة التخزين الخاصة بسورس ريك ثون لا تقم بحذفها ابدًا - @RICKTHON"
         _, groupid = await create_supergroup(
-            "مجموعة التخزين ريك ثون", catub, Config.TG_BOT_USERNAME, descript, PHOTO
+            "مجموعة التخزين ريك ثون", catub, Config.TG_BOT_USERNAME, descript
         )
         addgvar("PRIVATE_GROUP_BOT_API_ID", groupid)
         print(
