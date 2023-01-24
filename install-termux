@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# Ultroid - UserBot
-# Copyright (C) 2021-2022 TeamUltroid
+# Rickthon - UserBot
+# Copyright (C) 2021-2022 Rickthon 
 #
-# This file is a part of < https://github.com/TeamUltroid/Ultroid/ >
+# This file is a part of < https://github.com/rick1128/userbot/ >
 # PLease read the GNU Affero General Public License in <https://www.github.com/TeamUltroid/Ultroid/blob/main/LICENSE/>.
 
 if [ -d "resources" ]
@@ -10,7 +10,7 @@ then
     echo "Current directory Identified.."
 else
     apt install git -y
-    git clone https://github.com/rogerpq/Ultroid
+    git clone https://github.com/rick1128/userbot
     cd Ultroid
 fi
 bash resources/startup/termux.sh
